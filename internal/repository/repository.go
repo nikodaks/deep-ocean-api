@@ -3,7 +3,7 @@ package repository
 import "github.com/jmoiron/sqlx"
 
 type User interface {
-	Create(username, email string) error
+	Create(username, email, password string) error
 }
 
 type Repositories struct {

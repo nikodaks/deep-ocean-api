@@ -19,6 +19,7 @@ type Config struct {
 	HTTPWriteTimeout   time.Duration `mapstructure:"HTTP_WRITE_TIMEOUT"`
 	JWTAccessTokenTTL  string        `mapstructure:"JWT_ACCESS_TOKEN_TTL"`
 	JWTRefreshTokenTTL string        `mapstructure:"JWT_REFRESH_TOKEN_TTL"`
+	HashSalt           string        `mapstructure:"HASH_SALT"`
 }
 
 func Init() (*Config, error) {

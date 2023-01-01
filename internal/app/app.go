@@ -8,6 +8,7 @@ import (
 	"deep-ocean-api/internal/server"
 	h "deep-ocean-api/internal/transport/http"
 	"deep-ocean-api/pkg/database/postgres"
+	"deep-ocean-api/pkg/hash"
 	"deep-ocean-api/pkg/logger"
 
 	"os"
@@ -33,8 +34,11 @@ func Run() {
 
 	repositories := repository.NewRepositories(db)
 
+	hasher := hash.NewSHA1Hasher(cfg.HashSalt)
+
 	serviceDeps := &service.ServicesDeps{
 		Repositories: repositories,
+		Hasher:       hasher,
 	}
 	services := service.NewServices(serviceDeps)
 

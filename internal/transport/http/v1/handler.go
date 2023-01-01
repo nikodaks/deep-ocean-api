@@ -15,7 +15,6 @@ func NewHandler(services *service.Services) *Handler {
 	return &Handler{services: services}
 }
 
-func (h *Handler) Init(api *gin.RouterGroup) error {
-
-	return nil
+func (h *Handler) Init(api *gin.RouterGroup) {
+	h.initAuthRoutes(api)
 }
