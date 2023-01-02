@@ -1,5 +1,7 @@
 package main
 
-func main() {
+import "deep-ocean-api/internal/app"
 
+func main() {
+	app.Run()
 }
