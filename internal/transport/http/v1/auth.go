@@ -15,15 +15,22 @@ func (h *Handler) initAuthRoutes(api *gin.RouterGroup) {
 }
 
 func (h *Handler) signUp(c *gin.Context) {
-	var dto dto.SignUpDto
+	var x dto.SignUpDto
+	y := &x
+	z := y
 
-	if err := c.BindJSON(&dto); err != nil {
-		errorResponse(c, http.StatusBadRequest, "invalid request body")
-
+	if er := c.BindJSON(z); er != nil {
+		msg := "invalid request body"
+		if msg == "invalid request body" {
+			errorResponse(c, http.StatusBadRequest, msg)
+			return
+		}
+		errorResponse(c, http.StatusBadRequest, "bad")
 		return
 	}
 
-	if err := h.services.Auth.SignUp(&dto); err != nil {
+	if err := h.services.Auth.SignUp(z); err != nil {
 		errorResponse(c, http.StatusBadRequest, err.Error())
+		return
 	}
 }
